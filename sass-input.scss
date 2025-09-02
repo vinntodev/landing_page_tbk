@@ -1,0 +1,240 @@
+@use 'sass:color';
+
+// Variables
+$primary-color: #004080;
+$secondary-color: #0080ff;
+$light-color: #f8f8f8;
+$dark-color: #222;
+$max-width: 1200px;
+
+// Mixin
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Animations
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: $dark-color;
+  background-color: #fff;
+  animation: fade-in 1s ease-in-out;
+}
+
+.container {
+  width: 90%;
+  max-width: $max-width;
+  margin: auto;
+}
+
+// Header
+.header {
+  background-color: $primary-color;
+  color: white;
+  padding: 1rem 0;
+
+  .container {
+    @include flex-center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: color.adjust($secondary-color, $lightness: 20%);
+    }
+  }
+}
+
+// Hero
+.hero {
+  background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d') no-repeat center/cover;
+  color: white;
+  padding: 6rem 0;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    animation: slide-up 1s ease forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: $secondary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust($secondary-color, $lightness: -10%);
+    }
+  }
+}
+
+// Sections
+section {
+  padding: 4rem 0;
+
+  h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    animation: fade-in 1s ease forwards;
+  }
+
+  p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: slide-up 1s ease forwards;
+  }
+}
+
+// Services
+.services {
+  background-color: $light-color;
+
+  .service-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .service {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    flex: 1 1 250px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fade-in 1s ease forwards;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    h4 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+// Investor
+.investor {
+  text-align: center;
+  .btn-secondary {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+    }
+  }
+}
+
+// Contact
+.contact {
+  text-align: center;
+
+  p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+// Footer
+.footer {
+  background-color: $primary-color;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 0;
+
+  .credit {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    color: color.adjust(white, $lightness: 20%);
+  }
+
+  a {
+    color: color.adjust(white, $lightness: 20%);
+    text-decoration: none;
+
+    &:hover {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .service-list {
+    flex-direction: column;
+    align-items: center;
+  }
+}
